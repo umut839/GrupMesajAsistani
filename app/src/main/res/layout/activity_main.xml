@@ -1,71 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F8F9FA">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
-
-        <EditText
-            android:id="@+id/messageEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Gönderilecek mesajı buraya yazın..."
-            android:minLines="4"
-            android:gravity="top|start" />
-
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Görsel Seç"
-            android:layout_marginTop="12dp" />
-
-        <ImageView
-            android:id="@+id/previewImageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="12dp"
-            android:scaleType="fitCenter" />
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WhatsApp Gönderim İşlemleri (Her defasında farklı 5 grup seçiniz)"
+            android:text="GrupMesaj Asistanı"
+            android:textSize="26sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:gravity="center" />
+            android:textColor="#128C7E"
+            android:layout_marginBottom="16dp" />
 
-        <Button
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gönderilecek mesajı buraya yazın..."
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/messageEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="4"
+                android:gravity="top|start" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selectImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="📷 Görsel Seç"
+            app:cornerRadius="16dp"
+            app:backgroundTint="#607D8B"
+            android:layout_marginTop="16dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/previewImageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:background="#E0E0E0" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WhatsApp Gönderim İşlemleri"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:textColor="#555555" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSend1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="1. Gönderim (İlk 5 Grup)"
+            app:cornerRadius="16dp"
+            app:backgroundTint="#25D366"
             android:layout_marginTop="8dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSend2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="2. Gönderim (Sonraki 5 Grup)"
+            app:cornerRadius="16dp"
+            app:backgroundTint="#128C7E"
             android:layout_marginTop="8dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSend3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="3. Gönderim (Sonraki 5 Grup)"
+            app:cornerRadius="16dp"
+            app:backgroundTint="#075E54"
             android:layout_marginTop="8dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSend4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="4. Gönderim (Sonraki 5 Grup)"
+            app:cornerRadius="16dp"
+            app:backgroundTint="#054c44"
             android:layout_marginTop="8dp" />
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
