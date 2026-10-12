@@ -1,33 +1,32 @@
 package com.umutoge.grupmesajasistani
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
     
     private var selectedImageUri: Uri? = null
     private lateinit var previewImageView: ImageView
-    private lateinit var messageEditText: EditText
+    private lateinit var messageEditText: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         messageEditText = findViewById(R.id.messageEditText)
-        val selectImageButton = findViewById<Button>(R.id.selectImageButton)
+        val selectImageButton = findViewById<MaterialButton>(R.id.selectImageButton)
         previewImageView = findViewById(R.id.previewImageView)
 
-        // 4 Butonu tanımlıyoruz
-        val btnSend1 = findViewById<Button>(R.id.btnSend1)
-        val btnSend2 = findViewById<Button>(R.id.btnSend2)
-        val btnSend3 = findViewById<Button>(R.id.btnSend3)
-        val btnSend4 = findViewById<Button>(R.id.btnSend4)
+        val btnSend1 = findViewById<MaterialButton>(R.id.btnSend1)
+        val btnSend2 = findViewById<MaterialButton>(R.id.btnSend2)
+        val btnSend3 = findViewById<MaterialButton>(R.id.btnSend3)
+        val btnSend4 = findViewById<MaterialButton>(R.id.btnSend4)
 
         selectImageButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -35,7 +34,6 @@ class MainActivity : Activity() {
             startActivityForResult(intent, 100)
         }
 
-        // Tıklama işlemini tüm butonlar için ortak yapıyoruz
         val sendClickListener = android.view.View.OnClickListener {
             sendToWhatsApp()
         }
@@ -46,7 +44,6 @@ class MainActivity : Activity() {
         btnSend4.setOnClickListener(sendClickListener)
     }
 
-    // Ortak WhatsApp Gönderme Fonksiyonu
     private fun sendToWhatsApp() {
         val message = messageEditText.text.toString()
         
