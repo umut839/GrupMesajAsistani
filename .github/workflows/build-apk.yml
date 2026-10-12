@@ -1,37 +1,31 @@
-name: Build GrupMesaj Asistani APK
+name: Build APK
 
-on:
+"on":
 workflow_dispatch:
 
 jobs:
 build:
 runs-on: ubuntu-latest
 steps:
-- name: Checkout repository
+- name: Checkout
 uses: actions/checkout@v4
 
-  - name: Set up JDK 17
+name: Setup Java
     uses: actions/setup-java@v4
     with:
       distribution: temurin
       java-version: '17'
 
-  - name: Set up Android SDK
+name: Setup Android SDK
     uses: android-actions/setup-android@v3
 
-  - name: Build debug APK
+name: Build APK
     run: |
-      if [ ! -f gradlew ]; then
-        echo "HATA: gradlew dosyasi bulunamadi."
-        exit 1
-      fi
       chmod +x gradlew
-      ./gradlew assembleDebug --stacktrace
+      ./gradlew assembleDebug
 
-  - name: Upload APK
+name: Upload APK
     uses: actions/upload-artifact@v4
     with:
-      name: GrupMesajAsistani-debug-apk
+      name: GrupMesajAsistani-APK
       path: app/build/outputs/apk/debug/*.apk
-      if-no-files-found: error
-      retention-days: 7
