@@ -6,10 +6,9 @@ workflow_dispatch:
 jobs:
 build:
 runs-on: ubuntu-latest
-
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+- name: Checkout repository
+uses: actions/checkout@v4
 
   - name: Set up JDK 17
     uses: actions/setup-java@v4
@@ -20,20 +19,14 @@ steps:
   - name: Set up Android SDK
     uses: android-actions/setup-android@v3
 
-  - name: Grant execute permission
-    run: |
-      if [ -f gradlew ]; then
-        chmod +x gradlew
-      fi
-
   - name: Build debug APK
     run: |
-      if [ -f gradlew ]; then
-        ./gradlew assembleDebug --stacktrace
-      else
-        echo "HATA: Proje kokunde gradlew dosyasi bulunamadi."
+      if [ ! -f gradlew ]; then
+        echo "HATA: gradlew dosyasi bulunamadi."
         exit 1
       fi
+      chmod +x gradlew
+      ./gradlew assembleDebug --stacktrace
 
   - name: Upload APK
     uses: actions/upload-artifact@v4
