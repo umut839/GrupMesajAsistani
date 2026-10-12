@@ -7,7 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:label="GrupMesaj Asistanı"
+        android:icon="@drawable/ic_app_icon"
+        android:roundIcon="@drawable/ic_app_icon"
+        android:label="Grup Mesaj Asistanı"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
