@@ -38,6 +38,7 @@ class MainActivity : Activity() {
             }
 
             val sendIntent = Intent(Intent.ACTION_SEND)
+            sendIntent.setPackage("com.whatsapp") // Sadece WhatsApp'ı hedefler
             
             if (selectedImageUri != null) {
                 sendIntent.type = "image/*"
@@ -51,13 +52,11 @@ class MainActivity : Activity() {
                 sendIntent.putExtra(Intent.EXTRA_TEXT, message)
             }
 
-            // Android paylaşım ekranını atlayıp doğrudan WhatsApp'ı açar
-            sendIntent.setPackage("com.whatsapp")
-
             try {
+                // Chooser (Şununla Paylaş) kullanmadan doğrudan başlatıyoruz
                 startActivity(sendIntent)
             } catch (e: Exception) {
-                Toast.makeText(this, "WhatsApp yüklü değil veya bulunamadı.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "WhatsApp bulunamadı.", Toast.LENGTH_SHORT).show()
             }
         }
     }
