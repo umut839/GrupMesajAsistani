@@ -23,14 +23,12 @@ class MainActivity : Activity() {
         val sendWhatsAppButton = findViewById<Button>(R.id.sendWhatsAppButton)
         previewImageView = findViewById(R.id.previewImageView)
 
-        // Görsel Seç Butonu
         selectImageButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             startActivityForResult(intent, 100)
         }
 
-        // WhatsApp'a Aktar Butonu
         sendWhatsAppButton.setOnClickListener {
             val message = messageEditText.text.toString()
             
@@ -53,8 +51,14 @@ class MainActivity : Activity() {
                 sendIntent.putExtra(Intent.EXTRA_TEXT, message)
             }
 
-            val chooser = Intent.createChooser(sendIntent, "Şununla paylaş...")
-            startActivity(chooser)
+            // Android paylaşım ekranını atlayıp doğrudan WhatsApp'ı açar
+            sendIntent.setPackage("com.whatsapp")
+
+            try {
+                startActivity(sendIntent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "WhatsApp yüklü değil veya bulunamadı.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
